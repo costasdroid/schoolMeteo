@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.1/moment-with-locales.min.js"></script>
+  <meta charset="utf-8" />
+</head>
+
+<body>
+
+  <h1 id="data">Τελευταία Δεδομένα</h1>
+  <ul>
+    <li id="li1"></li>
+    <li id="li2"></li>
+    <li id="li3"></li>
+    <li id="li4"></li>
+    <li id="li5"></li>
+    <li id="li6"></li>
+    <li id="li7"></li>
+    <li id="li8"></li>
+    <li id="li9"></li>
+  </ul>
+  <div><canvas id="myChartHumitidy" width="400px" height="400px"></canvas></div>
+  <div><canvas id="myChartTemperature" width="400px" height="400px"></canvas></div>
+  <div><canvas id="myChartGroundTemperature" width="400px" height="400px"></canvas></div>
+  <div><canvas id="myChartAirQuality" width="400px" height="400px"></canvas></div>
+  <div><canvas id="myChartAirPressure" width="400px" height="400px"></canvas></div>
+  <div><canvas id="myChartWindDirection" width="400px" height="400px"></canvas></div>
+  <div><canvas id="myChartWindSpeed" width="400px" height="400px"></canvas></div>
+  <div><canvas id="myChartWindGust" width="400px" height="400px"></canvas></div>
+  <div><canvas id="myChartRainfall" width="400px" height="400px"></canvas></div>
+
+</body>
+<script>
+  var humidity = [];
+  var temperature = [];
+  var groundTemperature = [];
+  var airQuality = [];
+  var airPressure = [];
+  var windDirection = [];
+  var windSpeed = [];
+  var windGust = [];
+  var rainfall = [];
+
+  var xAxes = [{
+    type: 'time',
+    time: {
+      displayFormats: {
+        hour: 'HH'
+      },
+      unit: 'day'
+    }
+  }];
+
+  var chartHumidity = new Chart(document.getElementById("myChartHumitidy"), {
+    type: 'line',
+    data: {
+      datasets: [{
+        data: humidity,
+        fill: false
+      }]
+    },
+    options: {
+      maintainAspectRatio: false,
+      title: {
+        display: true,
+        text: 'Υγρασία',
+        fontSize: 20
+      },
+      legend: {
+        display: false
+      },
+      scales: {
+        xAxes: xAxes,
+        yAxes: [{
+          ticks: {
+            // Include a dollar sign in the ticks
+            callback: function(value, index, values) {
+              return value + '%';
+            }
+          }
+        }]
+      }
+    }
+  });
+
+  var chartTemperature = new Chart(document.getElementById("myChartTemperature"), {
+    type: 'line',
+    data: {
+      datasets: [{
+        data: temperature,
+        fill: false
+      }]
+    },
+    options: {
+      maintainAspectRatio: false,
+      title: {
+        display: true,
+        text: 'Θερμοκρασία Αέρα',
+        fontSize: 20
+      },
+      legend: {
+        display: false
+      },
+      scales: {
+        xAxes: xAxes,
+        yAxes: [{
+          ticks: {
+            // Include a dollar sign in the ticks
+            callback: function(value, index, values) {
+              return value + ' \u{00B0}C';
+            }
+          }
+        }]
+      }
+    }
+  });
+
+  var chartGroundTemperature = new Chart(document.getElementById("myChartGroundTemperature"), {
+    type: 'line',
+    data: {
+      datasets: [{
+        label: 'Χώματος',
+        data: groundTemperature,
+        lineTension: 0,
+        fill: false
+      }, {
+        label: 'Αέρα',
+        data: temperature,
+        lineTension: 0,
+        fill: false
+      }]
+    },
+    options: {
+      maintainAspectRatio: false,
+      title: {
+        display: true,
+        text: 'Θερμοκρασίες',
+        fontSize: 20
+      },
+      scales: {
+        xAxes: xAxes,
+        yAxes: [{
+          ticks: {
+            // Include a dollar sign in the ticks
+            callback: function(value, index, values) {
+              return value + ' \u{00B0}C';
+            }
+          }
+        }]
+      }
+    }
+  });
+
+  var chartAirQuality = new Chart(document.getElementById("myChartAirQuality"), {
+    type: 'line',
+    data: {
+      datasets: [{
+        data: airQuality,
+        lineTension: 0,
+        fill: false
+      }]
+    },
+    options: {
+      maintainAspectRatio: false,
+      title: {
+        display: true,
+        text: 'Ποσοστό CO2',
+        fontSize: 20
+      },
+      legend: {
+        display: false
+      },
+      scales: {
+        xAxes: xAxes,
+        yAxes: [{
+          ticks: {
+            // Include a dollar sign in the ticks
+            callback: function(value, index, values) {
+              return value + '%';
+            }
+          }
+        }]
+      }
+    }
+  });
+
+  var chartAirPressure = new Chart(document.getElementById("myChartAirPressure"), {
+    type: 'line',
+    data: {
+      datasets: [{
+        data: airPressure,
+        lineTension: 0,
+        fill: false
+      }]
+    },
+    options: {
+      maintainAspectRatio: false,
+      title: {
+        display: true,
+        text: 'Ατμοσφαιρική Πίεση',
+        fontSize: 20
+      },
+      legend: {
+        display: false
+      },
+      scales: {
+        xAxes: xAxes
+      }
+    }
+  });
+
+  var chartWindDirection = new Chart(document.getElementById("myChartWindDirection"), {
+    type: 'line',
+    data: {
+      datasets: [{
+        data: windDirection,
+        lineTension: 0,
+        fill: false
+      }]
+    },
+    options: {
+      maintainAspectRatio: false,
+      title: {
+        display: true,
+        text: 'Κατεύθυνση Ανέμου',
+        fontSize: 20
+      },
+      legend: {
+        display: false
+      },
+      scales: {
+        xAxes: xAxes
+      }
+    }
+  });
+
+  var chartWindSpeed = new Chart(document.getElementById("myChartWindSpeed"), {
+    type: 'line',
+    data: {
+      datasets: [{
+        data: windSpeed,
+        lineTension: 0,
+        fill: false
+      }]
+    },
+    options: {
+      maintainAspectRatio: false,
+      title: {
+        display: true,
+        text: 'Ταχύτητα Ανέμου',
+        fontSize: 20
+      },
+      legend: {
+        display: false
+      },
+      scales: {
+        xAxes: xAxes
+      }
+    }
+  });
+
+  var chartWindGust = new Chart(document.getElementById("myChartWindGust"), {
+    type: 'line',
+    data: {
+      datasets: [{
+        data: windGust,
+        lineTension: 0,
+        fill: false
+      }]
+    },
+    options: {
+      maintainAspectRatio: false,
+      title: {
+        display: true,
+        text: 'Ριπές Ανέμου',
+        fontSize: 20
+      },
+      legend: {
+        display: false
+      },
+      scales: {
+        xAxes: xAxes
+      }
+    }
+  });
+
+  var chartRainfall = new Chart(document.getElementById("myChartRainfall"), {
+    type: 'line',
+    data: {
+      datasets: [{
+        data: rainfall,
+        lineTension: 0,
+        fill: false
+      }]
+    },
+    options: {
+      maintainAspectRatio: false,
+      title: {
+        display: true,
+        text: 'Βροχή',
+        fontSize: 20
+      },
+      legend: {
+        display: false
+      },
+      scales: {
+        xAxes: xAxes
+      }
+    }
+  });
+
+  $(document).ready(function() {
+    var lastData;
+    $.getJSON("https://apex.oracle.com/pls/apex/raspberrypi/weatherstation/getallmeasurements/9254259", function(data) {
+      lastData = data.items[0];
+      $.each(data.items, function(key, val) {
+        var time = moment(val.reading_timestamp);
+        if (time > moment(lastData.reading_timestamp)) lastData = val;
+        humidity.push({
+          x: time,
+          y: val.humidity
+        });
+        temperature.push({
+          x: time,
+          y: val.ambient_temp
+        });
+        groundTemperature.push({
+          x: time,
+          y: val.ground_temp
+        });
+        airQuality.push({
+          x: time,
+          y: val.air_quality
+        });
+        airPressure.push({
+          x: time,
+          y: val.air_pressure
+        });
+        windDirection.push({
+          x: time,
+          y: val.wind_direction
+        });
+        windSpeed.push({
+          x: time,
+          y: val.wind_speed
+        });
+        windGust.push({
+          x: time,
+          y: val.wind_gust_speed
+        });
+        rainfall.push({
+          x: time,
+          y: val.rainfall
+        });
+      })
+    }).done(function() {
+      $('#data').text('Τελευταία Δεδομένα: ' + moment(lastData.reading_timestamp.toString()).format('D MMM YYYY HH:mm'));
+      $('#li1').text('Υγρασία: ' + lastData.humidity);
+      $('#li2').text('Θερμοκρασία Αέρα: ' + lastData.ambient_temp);
+      $('#li3').text('Θερμοκαρία Χώματος: ' + lastData.ground_temp);
+      $('#li4').text('Ποσότητα CO2: ' + lastData.air_quality);
+      $('#li5').text('Ατμοσφαιρική Πίεση: ' + lastData.air_pressure);
+      $('#li6').text('Κατεύθυνση Ανέμου: ' + lastData.wind_direction);
+      $('#li7').text('Ταχύτητα Ανέμου: ' + lastData.wind_speed + ' Μποφόρ');
+      $('#li8').text('Ριπές Ανέμου: ' + lastData.wind_gust_speed);
+      $('#li9').text('Βροχόπτωση: ' + lastData.rainfall);
+
+      chartHumidity.update();
+      chartTemperature.update();
+      chartGroundTemperature.update();
+      chartAirQuality.update();
+      chartAirPressure.update();
+      chartWindDirection.update();
+      chartWindSpeed.update();
+      chartWindGust.update();
+      chartRainfall.update();
+    });
+  });
+</script>
+
+</html>
