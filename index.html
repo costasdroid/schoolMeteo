@@ -59,6 +59,7 @@
     data: {
       datasets: [{
         data: humidity,
+        borderColor: 'Blue',
         fill: false
       }]
     },
@@ -91,6 +92,7 @@
     data: {
       datasets: [{
         data: temperature,
+        borderColor: 'Blue',
         fill: false
       }]
     },
@@ -125,11 +127,13 @@
         label: 'Χώματος',
         data: groundTemperature,
         lineTension: 0,
+        borderColor: 'Blue',
         fill: false
       }, {
         label: 'Αέρα',
         data: temperature,
         lineTension: 0,
+        borderColor: 'Red',
         fill: false
       }]
     },
@@ -160,6 +164,7 @@
       datasets: [{
         data: airQuality,
         lineTension: 0,
+        borderColor: 'Blue',
         fill: false
       }]
     },
@@ -193,6 +198,7 @@
       datasets: [{
         data: airPressure,
         lineTension: 0,
+        borderColor: 'Blue',
         fill: false
       }]
     },
@@ -218,6 +224,7 @@
       datasets: [{
         data: windDirection,
         lineTension: 0,
+        borderColor: 'Blue',
         fill: false
       }]
     },
@@ -243,6 +250,7 @@
       datasets: [{
         data: windSpeed,
         lineTension: 0,
+        borderColor: 'Blue',
         fill: false
       }]
     },
@@ -268,6 +276,7 @@
       datasets: [{
         data: windGust,
         lineTension: 0,
+        borderColor: 'Blue',
         fill: false
       }]
     },
@@ -293,6 +302,7 @@
       datasets: [{
         data: rainfall,
         lineTension: 0,
+        borderColor: 'Blue',
         fill: false
       }]
     },
@@ -358,15 +368,15 @@
       })
     }).done(function() {
       $('#data').text('Τελευταία Δεδομένα: ' + moment(lastData.reading_timestamp.toString()).format('D MMM YYYY HH:mm'));
-      $('#li1').text('Υγρασία: ' + lastData.humidity);
-      $('#li2').text('Θερμοκρασία Αέρα: ' + lastData.ambient_temp);
-      $('#li3').text('Θερμοκαρία Χώματος: ' + lastData.ground_temp);
+      $('#li1').text('Υγρασία:' + lastData.humidity + '%');
+      $('#li2').text('Θερμοκρασία Αέρα: ' + lastData.ambient_temp + '\u{00B0}C');
+      $('#li3').text('Θερμοκαρία Χώματος: ' + lastData.ground_temp + '\u{00B0}C');
       $('#li4').text('Ποσότητα CO2: ' + lastData.air_quality);
-      $('#li5').text('Ατμοσφαιρική Πίεση: ' + lastData.air_pressure);
-      $('#li6').text('Κατεύθυνση Ανέμου: ' + lastData.wind_direction);
+      $('#li5').text('Ατμοσφαιρική Πίεση: ' + lastData.air_pressure + 'Pa');
+      $('#li6').text('Κατεύθυνση Ανέμου: ' + lastData.wind_direction + '\u{00B0}');
       $('#li7').text('Ταχύτητα Ανέμου: ' + lastData.wind_speed + ' Μποφόρ');
       $('#li8').text('Ριπές Ανέμου: ' + lastData.wind_gust_speed);
-      $('#li9').text('Βροχόπτωση: ' + lastData.rainfall);
+      $('#li9').text('Βροχόπτωση: ' + lastData.rainfall + 'mm');
 
       chartHumidity.update();
       chartTemperature.update();
@@ -379,6 +389,9 @@
       chartRainfall.update();
     });
   });
+  setTimeout(function() {
+    window.location.reload(1);
+  }, 300000);
 </script>
 
 </html>
