@@ -2,10 +2,31 @@
 <html>
 
 <head>
+  <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.1/moment-with-locales.min.js"></script>
   <meta charset="utf-8" />
+
+  <style>
+    /* Always set the map height explicitly to define the size of the div
+   * element that contains the map. */
+
+    #map {
+      height: 100%;
+    }
+
+    /* Optional: Makes the sample page fill the window. */
+
+    html,
+    body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+  </style>
+
 </head>
 
 <body>
@@ -22,6 +43,10 @@
     <li id="li8"></li>
     <li id="li9"></li>
   </ul>
+
+  <select id='stations' onchange="getLatest(value); getMeasurements(value);">
+  </select>
+
   <div><canvas id="myChartHumitidy" width="400px" height="400px"></canvas></div>
   <div><canvas id="myChartTemperature" width="400px" height="400px"></canvas></div>
   <div><canvas id="myChartGroundTemperature" width="400px" height="400px"></canvas></div>
@@ -31,6 +56,8 @@
   <div><canvas id="myChartWindSpeed" width="400px" height="400px"></canvas></div>
   <div><canvas id="myChartWindGust" width="400px" height="400px"></canvas></div>
   <div><canvas id="myChartRainfall" width="400px" height="400px"></canvas></div>
+
+  <div id="map"></div>
 
 </body>
 <script>
@@ -44,13 +71,15 @@
   var windGust = [];
   var rainfall = [];
 
+  var stations = [];
+
   var xAxes = [{
     type: 'time',
     time: {
       displayFormats: {
         hour: 'HH'
       },
-      unit: 'day'
+      unit: 'hour'
     }
   }];
 
@@ -64,6 +93,11 @@
       }]
     },
     options: {
+      elements: {
+          line: {
+              tension: 0, // disables bezier curves
+          }
+      },
       maintainAspectRatio: false,
       title: {
         display: true,
@@ -97,6 +131,11 @@
       }]
     },
     options: {
+      elements: {
+          line: {
+              tension: 0, // disables bezier curves
+          }
+      },
       maintainAspectRatio: false,
       title: {
         display: true,
@@ -138,6 +177,11 @@
       }]
     },
     options: {
+      elements: {
+          line: {
+              tension: 0, // disables bezier curves
+          }
+      },
       maintainAspectRatio: false,
       title: {
         display: true,
@@ -169,6 +213,11 @@
       }]
     },
     options: {
+      elements: {
+          line: {
+              tension: 0, // disables bezier curves
+          }
+      },
       maintainAspectRatio: false,
       title: {
         display: true,
@@ -203,6 +252,11 @@
       }]
     },
     options: {
+      elements: {
+          line: {
+              tension: 0, // disables bezier curves
+          }
+      },
       maintainAspectRatio: false,
       title: {
         display: true,
@@ -229,6 +283,11 @@
       }]
     },
     options: {
+      elements: {
+          line: {
+              tension: 0, // disables bezier curves
+          }
+      },
       maintainAspectRatio: false,
       title: {
         display: true,
@@ -255,6 +314,11 @@
       }]
     },
     options: {
+      elements: {
+          line: {
+              tension: 0, // disables bezier curves
+          }
+      },
       maintainAspectRatio: false,
       title: {
         display: true,
@@ -281,6 +345,11 @@
       }]
     },
     options: {
+      elements: {
+          line: {
+              tension: 0, // disables bezier curves
+          }
+      },
       maintainAspectRatio: false,
       title: {
         display: true,
@@ -307,6 +376,11 @@
       }]
     },
     options: {
+      elements: {
+          line: {
+              tension: 0, // disables bezier curves
+          }
+      },
       maintainAspectRatio: false,
       title: {
         display: true,
@@ -322,13 +396,41 @@
     }
   });
 
-  $(document).ready(function() {
-    var lastData;
-    $.getJSON("https://apex.oracle.com/pls/apex/raspberrypi/weatherstation/getallmeasurements/9254259", function(data) {
-      lastData = data.items[0];
+  var pages;
+  var page = 0;
+  var lastTime;
+  var mySchool = 9254259;
+
+  var getLatest = function(stationId) {
+    $.getJSON("https://apex.oracle.com/pls/apex/raspberrypi/weatherstation/getlatestmeasurements/" + (stationId || mySchool), function(data) {
+      var lastMeasures = data.items[0];
+      $('#data').text('Τελευταία Δεδομένα: ' + moment(lastMeasures.reading_timestamp.toString()).format('D MMM YYYY HH:mm') + ' από ' + lastMeasures.id + ', ' + lastMeasures.created_by);
+      $('#li1').text('Υγρασία: ' + lastMeasures.humidity + '%');
+      $('#li2').text('Θερμοκρασία Αέρα: ' + lastMeasures.ambient_temp + '\u{00B0}C');
+      $('#li3').text('Θερμοκαρία Χώματος: ' + lastMeasures.ground_temp + '\u{00B0}C');
+      $('#li4').text('Ποσότητα CO2: ' + lastMeasures.air_quality);
+      $('#li5').text('Ατμοσφαιρική Πίεση: ' + lastMeasures.air_pressure + 'Pa');
+      $('#li6').text('Κατεύθυνση Ανέμου: ' + lastMeasures.wind_direction + '\u{00B0}');
+      $('#li7').text('Ταχύτητα Ανέμου: ' + lastMeasures.wind_speed + 'Km/h');
+      $('#li8').text('Ριπές Ανέμου: ' + lastMeasures.wind_gust_speed);
+      $('#li9').text('Βροχόπτωση: ' + lastMeasures.rainfall + 'mm');
+    })
+  }
+
+  var getMeasurements = function(stationId) {
+    $.getJSON("https://apex.oracle.com/pls/apex/raspberrypi/weatherstation/getallmeasurements/" + (stationId || mySchool), function(data) {
+
+        humidity.length = 0;
+        temperature.length = 0;
+        groundTemperature.length = 0;
+        airQuality.length = 0;
+        airPressure.length = 0;
+        windDirection.length = 0;
+        windSpeed.length = 0;
+        windGust.length = 0;
+        rainfall.length = 0;
       $.each(data.items, function(key, val) {
         var time = moment(val.reading_timestamp);
-        if (time > moment(lastData.reading_timestamp)) lastData = val;
         humidity.push({
           x: time,
           y: val.humidity
@@ -367,17 +469,6 @@
         });
       })
     }).done(function() {
-      $('#data').text('Τελευταία Δεδομένα: ' + moment(lastData.reading_timestamp.toString()).format('D MMM YYYY HH:mm'));
-      $('#li1').text('Υγρασία:' + lastData.humidity + '%');
-      $('#li2').text('Θερμοκρασία Αέρα: ' + lastData.ambient_temp + '\u{00B0}C');
-      $('#li3').text('Θερμοκαρία Χώματος: ' + lastData.ground_temp + '\u{00B0}C');
-      $('#li4').text('Ποσότητα CO2: ' + lastData.air_quality);
-      $('#li5').text('Ατμοσφαιρική Πίεση: ' + lastData.air_pressure + 'Pa');
-      $('#li6').text('Κατεύθυνση Ανέμου: ' + lastData.wind_direction + '\u{00B0}');
-      $('#li7').text('Ταχύτητα Ανέμου: ' + lastData.wind_speed + ' Μποφόρ');
-      $('#li8').text('Ριπές Ανέμου: ' + lastData.wind_gust_speed);
-      $('#li9').text('Βροχόπτωση: ' + lastData.rainfall + 'mm');
-
       chartHumidity.update();
       chartTemperature.update();
       chartGroundTemperature.update();
@@ -388,10 +479,67 @@
       chartWindGust.update();
       chartRainfall.update();
     });
+  }
+
+  $(document).ready(function() {
+    getLatest();
+    getMeasurements();
   });
+
+  var fetchAllData = function(url) {
+    $.getJSON(url, function(data) {
+      //if (data.next) fetchAllData(data.next.$ref);
+    })
+  }
+
   setTimeout(function() {
-    window.location.reload(1);
-  }, 300000);
+    chartHumidity.update();
+    chartTemperature.update();
+    chartGroundTemperature.update();
+    chartAirQuality.update();
+    chartAirPressure.update();
+    chartWindDirection.update();
+    chartWindSpeed.update();
+    chartWindGust.update();
+    chartRainfall.update();
+  }, 3000);
+
+  var getAllStations = function(stationsurl, map) {
+    $.getJSON(stationsurl, function(data) {
+      $.each(data.items, function(key, val) {
+        $('#stations').append($('<option>', {
+          value: val.weather_stn_id,
+          text: val.weather_stn_name + ", " + val.weather_stn_id
+        }));
+
+        stations.push(val);
+        var marker = new google.maps.Marker({
+          position: new google.maps.LatLng(val.weather_stn_lat, val.weather_stn_long),
+          map: map,
+          title: val.weather_stn_name + ", " + val.weather_stn_id
+        });
+      })
+      if (data.next) {
+        getAllStations(data.next.$ref)
+      };
+    });
+  };
+
+  function initMap() {
+    var myLatLng = {
+      lat: 40.6100309,
+      lng: 22.9892094
+    };
+
+    var map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 8,
+      center: myLatLng
+    });
+    getAllStations("https://apex.oracle.com/pls/apex/raspberrypi/weatherstation/getallstations", map);
+  }
 </script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAAJNzYS5vFxgYJjzj5BInnlzFsJhftjK8&callback=initMap">
+</script>
+
 
 </html>
