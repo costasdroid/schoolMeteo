@@ -59,64 +59,68 @@
   <div class="jumbotron text-center">
     <h1>Μετεωρολογικός Σταθμός 10ου ΓΕΛ Θεσσαλονίκης</h1>
   </div>
-
+  <div class="alert alert-warning alert-dismissible">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <strong>Προσοχή!</strong> Ο Σταθμός ακόμα βρίσκεται σε πειραματικό στάδιο. Οι μετρήσεις δεν είναι οι πραγματικές.
+  </div>
   <div class="card-group card-columns">
-    <div class="card text-white bg-dark text-center">
+    <div class="card text-white bg-dark">
       <div class="card-header">Υγρασία</div>
       <div class="card-body">
-        <p id="humidity" class="card-title"></p>
+        <p id="humidity" class="card-title text-center"></p>
       </div>
     </div>
-    <div class="card text-white bg-dark text-center">
+    <div class="card text-white bg-dark">
       <div class="card-header">Θερμοκρασία Αέρα</div>
       <div class="card-body">
-        <p id="temperature" class="card-title"></p>
+        <p id="temperature" class="card-title text-center"></p>
       </div>
     </div>
-    <div class="card text-white bg-dark text-center">
+    <div class="card text-white bg-dark">
       <div class="card-header">Θερμοκρασία Χώματος</div>
       <div class="card-body">
-        <p id="gtemperature" class="card-title"></p>
+        <p id="gtemperature" class="card-title text-center"></p>
       </div>
     </div>
-    <div class="card text-white bg-dark text-center">
+    <div class="card text-white bg-dark">
       <div class="card-header">Ποσότητα CO<sub>2</sub></div>
       <div class="card-body">
-        <p id="co2" class="card-title"></p>
+        <p id="co2" class="card-title text-center"></p>
       </div>
     </div>
   </div>
   <div class="card-group card-columns">
-    <div class="card text-white bg-dark text-center">
+    <div class="card text-white bg-dark">
       <div class="card-header">Ατμοσφαιρική Πίεση</div>
       <div class="card-body">
-        <p id="apressure" class="card-title"></p>
+        <p id="apressure" class="card-title text-center"></p>
       </div>
     </div>
-    <div class="card text-white bg-dark text-center">
+    <div class="card text-white bg-dark">
       <div class="card-header">Αέρας</div>
       <div class="card-body">
-        <p id="windd" class="card-title"></p>
+        <p id="windd" class="card-title text-center"></p>
       </div>
     </div>
-    <div class="card text-white bg-dark text-center">
+    <div class="card text-white bg-dark">
       <div class="card-header">Βροχή</div>
       <div class="card-body">
-        <p id="rain" class="card-title"></p>
+        <p id="rain" class="card-title text-center"></p>
       </div>
     </div>
-    <div class="card text-white bg-dark text-center">
-      <div class="card-header">Ριπές<sub>2</sub></div>
+    <div class="card text-white bg-dark">
+      <div class="card-header">Ριπές</div>
       <div class="card-body">
-        <p id="gust" class="card-title"></p>
+        <p id="gust" class="card-title text-center"></p>
       </div>
     </div>
   </div>
 
   <p class="text-right">Τελευταία Eνημέρωση: <span id="data" class="label label-info"></span></p>
 
-  <select id='stations' onchange="getLatest(value); getMeasurements(value);">
-  </select>
+  <p class="text-right">Διάλεξε Σταθμό:
+    <select id='stations' onchange="getLatest(value); getMeasurements(value);"></select>
+  </p>
 
   <div><canvas id="myChartHumitidy" width="400px" height="400px"></canvas></div>
   <div><canvas id="myChartTemperature" width="400px" height="400px"></canvas></div>
@@ -553,6 +557,7 @@
   }
 
   $(document).ready(function() {
+//alert("Τα δεδομένα του σταθμού είναι πειραματικά, αφού εκρεμμεί η τοποθέτησή του σε σωστή θέση. Μέχρι εκείνη τη στιγμή... ζήτω οι αλλαγές")
     getLatest();
     getMeasurements();
   });
