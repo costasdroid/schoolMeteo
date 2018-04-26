@@ -3,22 +3,24 @@
 
 <head>
   <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
-  
-  
+  <meta charset="utf-8" />
+
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.1/moment-with-locales.min.js"></script>
-  <!-- Popper.js, then Bootstrap JS -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
-  <meta charset="utf-8" />
-
   <style>
     /* Always set the map height explicitly to define the size of the div
-   * element that contains the map. */
+     * element that contains the map. */
+
+    .card-title {
+      font-size: 4vw;
+      color: Yellow;
+    }
+
+    .card-header {
+      font-size: 1.7vw;
+      font-weight: bold;
+    }
 
     #map {
       height: 100%;
@@ -34,22 +36,84 @@
     }
   </style>
 
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.1/moment-with-locales.min.js"></script>
+  <!-- Popper.js, then Bootstrap JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+
+  <style>
+    /* Always set the map height explicitly to define the size of the div
+   * element that contains the map. */
+
+    #map {
+      height: 100%;
+    }
+  </style>
+
 </head>
 
 <body>
 
-  <h1 id="data">Τελευταία Δεδομένα</h1>
-  <ul>
-    <li id="li1"></li>
-    <li id="li2"></li>
-    <li id="li3"></li>
-    <li id="li4"></li>
-    <li id="li5"></li>
-    <li id="li6"></li>
-    <li id="li7"></li>
-    <li id="li8"></li>
-    <li id="li9"></li>
-  </ul>
+  <div class="jumbotron text-center">
+    <h1>Μετεωρολογικός Σταθμός 10ου ΓΕΛ Θεσσαλονίκης</h1>
+  </div>
+
+  <div class="card-group card-columns">
+    <div class="card text-white bg-dark text-center">
+      <div class="card-header">Υγρασία</div>
+      <div class="card-body">
+        <p id="humidity" class="card-title"></p>
+      </div>
+    </div>
+    <div class="card text-white bg-dark text-center">
+      <div class="card-header">Θερμοκρασία Αέρα</div>
+      <div class="card-body">
+        <p id="temperature" class="card-title"></p>
+      </div>
+    </div>
+    <div class="card text-white bg-dark text-center">
+      <div class="card-header">Θερμοκρασία Χώματος</div>
+      <div class="card-body">
+        <p id="gtemperature" class="card-title"></p>
+      </div>
+    </div>
+    <div class="card text-white bg-dark text-center">
+      <div class="card-header">Ποσότητα CO<sub>2</sub></div>
+      <div class="card-body">
+        <p id="co2" class="card-title"></p>
+      </div>
+    </div>
+  </div>
+  <div class="card-group card-columns">
+    <div class="card text-white bg-dark text-center">
+      <div class="card-header">Ατμοσφαιρική Πίεση</div>
+      <div class="card-body">
+        <p id="apressure" class="card-title"></p>
+      </div>
+    </div>
+    <div class="card text-white bg-dark text-center">
+      <div class="card-header">Αέρας</div>
+      <div class="card-body">
+        <p id="windd" class="card-title"></p>
+      </div>
+    </div>
+    <div class="card text-white bg-dark text-center">
+      <div class="card-header">Βροχή</div>
+      <div class="card-body">
+        <p id="rain" class="card-title"></p>
+      </div>
+    </div>
+    <div class="card text-white bg-dark text-center">
+      <div class="card-header">Ριπές<sub>2</sub></div>
+      <div class="card-body">
+        <p id="gust" class="card-title"></p>
+      </div>
+    </div>
+  </div>
+
+  <p class="text-right">Τελευταία Eνημέρωση: <span id="data" class="label label-info"></span></p>
 
   <select id='stations' onchange="getLatest(value); getMeasurements(value);">
   </select>
@@ -101,9 +165,9 @@
     },
     options: {
       elements: {
-          line: {
-              tension: 0, // disables bezier curves
-          }
+        line: {
+          tension: 0, // disables bezier curves
+        }
       },
       maintainAspectRatio: false,
       title: {
@@ -139,9 +203,9 @@
     },
     options: {
       elements: {
-          line: {
-              tension: 0, // disables bezier curves
-          }
+        line: {
+          tension: 0, // disables bezier curves
+        }
       },
       maintainAspectRatio: false,
       title: {
@@ -185,9 +249,9 @@
     },
     options: {
       elements: {
-          line: {
-              tension: 0, // disables bezier curves
-          }
+        line: {
+          tension: 0, // disables bezier curves
+        }
       },
       maintainAspectRatio: false,
       title: {
@@ -221,9 +285,9 @@
     },
     options: {
       elements: {
-          line: {
-              tension: 0, // disables bezier curves
-          }
+        line: {
+          tension: 0, // disables bezier curves
+        }
       },
       maintainAspectRatio: false,
       title: {
@@ -260,9 +324,9 @@
     },
     options: {
       elements: {
-          line: {
-              tension: 0, // disables bezier curves
-          }
+        line: {
+          tension: 0, // disables bezier curves
+        }
       },
       maintainAspectRatio: false,
       title: {
@@ -291,9 +355,9 @@
     },
     options: {
       elements: {
-          line: {
-              tension: 0, // disables bezier curves
-          }
+        line: {
+          tension: 0, // disables bezier curves
+        }
       },
       maintainAspectRatio: false,
       title: {
@@ -322,9 +386,9 @@
     },
     options: {
       elements: {
-          line: {
-              tension: 0, // disables bezier curves
-          }
+        line: {
+          tension: 0, // disables bezier curves
+        }
       },
       maintainAspectRatio: false,
       title: {
@@ -353,9 +417,9 @@
     },
     options: {
       elements: {
-          line: {
-              tension: 0, // disables bezier curves
-          }
+        line: {
+          tension: 0, // disables bezier curves
+        }
       },
       maintainAspectRatio: false,
       title: {
@@ -384,9 +448,9 @@
     },
     options: {
       elements: {
-          line: {
-              tension: 0, // disables bezier curves
-          }
+        line: {
+          tension: 0, // disables bezier curves
+        }
       },
       maintainAspectRatio: false,
       title: {
@@ -411,31 +475,31 @@
   var getLatest = function(stationId) {
     $.getJSON("https://apex.oracle.com/pls/apex/raspberrypi/weatherstation/getlatestmeasurements/" + (stationId || mySchool), function(data) {
       var lastMeasures = data.items[0];
-      $('#data').text('Τελευταία Δεδομένα: ' + moment(lastMeasures.reading_timestamp.toString()).format('D MMM YYYY HH:mm') + ' από ' + lastMeasures.id + ', ' + lastMeasures.created_by);
-      $('#li1').text('Υγρασία: ' + lastMeasures.humidity + '%');
-      $('#li2').text('Θερμοκρασία Αέρα: ' + lastMeasures.ambient_temp + '\u{00B0}C');
-      $('#li3').text('Θερμοκαρία Χώματος: ' + lastMeasures.ground_temp + '\u{00B0}C');
-      $('#li4').text('Ποσότητα CO2: ' + lastMeasures.air_quality);
-      $('#li5').text('Ατμοσφαιρική Πίεση: ' + lastMeasures.air_pressure + 'Pa');
-      $('#li6').text('Κατεύθυνση Ανέμου: ' + lastMeasures.wind_direction + '\u{00B0}');
-      $('#li7').text('Ταχύτητα Ανέμου: ' + lastMeasures.wind_speed + 'Km/h');
-      $('#li8').text('Ριπές Ανέμου: ' + lastMeasures.wind_gust_speed);
-      $('#li9').text('Βροχόπτωση: ' + lastMeasures.rainfall + 'mm');
+      $('#data').text('Σταθμός ' + lastMeasures.created_by + ', ' + moment(lastMeasures.reading_timestamp.toString()).format("D MMM YYYY HH:mm"));
+      $('#humidity').text(lastMeasures.humidity + '%');
+      $('#temperature').text(lastMeasures.ambient_temp + '\u{00B0}C');
+      $('#gtemperature').text(lastMeasures.ground_temp + '\u{00B0}C');
+      $('#co2').text(lastMeasures.air_quality + '%');
+      $('#apressure').text(lastMeasures.air_pressure + 'Pa');
+      $('#windd').text(lastMeasures.wind_direction + '\u{00B0}');
+      $('#windv').text(lastMeasures.wind_speed + 'Km/h');
+      $('#gust').text(lastMeasures.wind_gust_speed);
+      $('#rain').text(lastMeasures.rainfall + 'mm');
     })
   }
 
   var getMeasurements = function(stationId) {
     $.getJSON("https://apex.oracle.com/pls/apex/raspberrypi/weatherstation/getallmeasurements/" + (stationId || mySchool), function(data) {
 
-        humidity.length = 0;
-        temperature.length = 0;
-        groundTemperature.length = 0;
-        airQuality.length = 0;
-        airPressure.length = 0;
-        windDirection.length = 0;
-        windSpeed.length = 0;
-        windGust.length = 0;
-        rainfall.length = 0;
+      humidity.length = 0;
+      temperature.length = 0;
+      groundTemperature.length = 0;
+      airQuality.length = 0;
+      airPressure.length = 0;
+      windDirection.length = 0;
+      windSpeed.length = 0;
+      windGust.length = 0;
+      rainfall.length = 0;
       $.each(data.items, function(key, val) {
         var time = moment(val.reading_timestamp);
         humidity.push({
