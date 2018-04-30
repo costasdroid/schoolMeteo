@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+  <meta charset="utf-8" />
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+
+  <style>
+    /* Always set the map height explicitly to define the size of the div
+     * element that contains the map. */
+
+    .card-title {
+      font-size: 4vw;
+      color: Yellow;
+    }
+
+    .card-header {
+      font-size: 1.7vw;
+      font-weight: bold;
+    }
+
+    #map {
+      height: 100%;
+    }
+
+    /* Optional: Makes the sample page fill the window. */
+
+    html,
+    body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+  </style>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.1/moment-with-locales.min.js"></script>
+  <!-- Popper.js, then Bootstrap JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+
+  <style>
+    /* Always set the map height explicitly to define the size of the div
+   * element that contains the map. */
+
+    #map {
+      height: 100%;
+    }
+  </style>
+
+</head>
+
+<body>
+
+  <div class="jumbotron text-center">
+    <h1>Σελίδα για feedback</h1>
+  </div>
+  <div class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Σελίδες
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+    <button class="dropdown-item" type="button">Κεντρική Σελίδα</button>
+    <button class="dropdown-item" type="button">Σελίδα Προτάσεων</button>
+    <button class="dropdown-item" type="button">Γενικά</button>
+  </div>
+  <p class="text-justify">την συγκεκριμένη σελίδα ζητάμε από εσάς εάν θέλετε να μας βοηθήσετε να βελτιώσουμε το site και γενικά όλο το project, να μας δώσετε το feedback σας. Έτσι, θα μπορέσουμε να προσθέσουμε πράγματα που λείπουν καθώς και να διορθώσουμε διάφορα προβλήματα.</p>
+</div>
+<form>
+  <div class="form-group">
+    <label for="exampleFormControlInput1">Email address</label>
+    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+  </div>
+  <div class="form-group">
+    <label for="exampleFormControlSelect1">Θέμα</label>
+    <select class="form-control" id="exampleFormControlSelect1">
+  </div>
+  <div class="form-group">
+    <label for="exampleFormControlSelect2">Feedback</label>
+    <select multiple class="form-control" id="exampleFormControlSelect2">
+  </div>
+</form>
+  <input type="submit" value="Submit">
+</html>
