@@ -4,7 +4,7 @@
 <head>
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
-  <link rel="stylesheet" type="text/css" href="index.css">
+  <link rel="stylesheet" type="text/css" href="feedback.css">
 
   <style>
     /* Always set the map height explicitly to define the size of the div
@@ -55,16 +55,19 @@
 
 <body>
 
-  <div class="dropdown">
-  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Σελίδες
+</div>
+<div class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Dropdown button
   </button>
-  <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-    <button class="dropdown-item" type="button">Κεντρική Σελίδα</button>
-    <button class="dropdown-item" type="button">Σελίδα Προτάσεων</button>
-    <button class="dropdown-item" type="button">Γενικά</button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <a class="dropdown-item" href="#">Κεντρική Σελίδα</a>
+    <a class="dropdown-item" href="#">Feedback</a>
+    <a class="dropdown-item" href="#">Γενικά</a>
   </div>
-         <h1>Feedback Form</h1>
+</div>
+
+   <h1>Feedback Form</h1>
 
          <h2 class="lead">Στη σελίδα αυτή, μπορείτε να μας δώσετε το feedback σας, προκειμένου να βελτιώσουμε το site και να διορθώσουμε τα πιθανά προβλήματα που υπάρχουν.</h2>
 
@@ -77,15 +80,15 @@
          <footer class="body">
          </footer>
 
-         <form  action="index.php">
+         <form  action="feedback.php">
 
-    <label>Name</label>
+    <label>Όνομα</label>
     <input name="name" placeholder="Type Here">
 
     <label>Email</label>
     <input name="email" type="email" placeholder="Type Here">
 
-    <label>Message</label>
+    <label>Feedback</label>
     <textarea name="message" placeholder="Type Here"></textarea>
 
     <label>*What is 2+2? (Anti-spam)</label>
