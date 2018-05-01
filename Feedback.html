@@ -67,87 +67,111 @@
     <button class="dropdown-item" type="button">Σελίδα Προτάσεων</button>
     <button class="dropdown-item" type="button">Γενικά</button>
   </div>
-  <div class="container">
+         <h1>Feedback Form</h1>
 
-           <div class="row">
+         <p class="lead">Στη σελίδα αυτή, μπορείτε να μας δώσετε το feedback σας, προκειμένου να βελτιώσουμε το site και να διορθώσουμε τα πιθανά προβλήματα που υπάρχουν.</p>
 
-               <div class="col-lg-8 col-lg-offset-2">
+         <?php
+ 	if (isset($_POST["submit"])) {
+ 		$name = $_POST['name'];
+ 		$email = $_POST['email'];
+ 		$message = $_POST['message'];
+ 		$human = intval($_POST['human']);
+ 		$from = 'Demo Contact Form';
+ 		$to = 'example@domain.com';
+ 		$subject = 'Message from Contact Demo ';
 
-                   <h1>Feedback Form</h1>
+ 		$body ="From: $name\n E-Mail: $email\n Message:\n $message";
+ 		// Check if name has been entered
+ 		if (!$_POST['name']) {
+ 			$errName = 'Please enter your name';
+ 		}
 
-                   <p class="lead">Στη σελίδα αυτή, μπορείτε να μας δώσετε το feedback σας, προκειμένου να βελτιώσουμε το site και να διορθώσουμε τα πιθανά προβλήματα που υπάρχουν.</p>
+ 		// Check if email has been entered and is valid
+ 		if (!$_POST['email'] || !filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
+ 			$errEmail = 'Please enter a valid email address';
+ 		}
 
-                   <!-- We're going to place the form here in the next step -->
-                   <form><form id="contact-form" method="post" action="contact.php" role="form">
+ 		//Check if message has been entered
+ 		if (!$_POST['message']) {
+ 			$errMessage = 'Please enter your message';
+ 		}
+ 		//Check if simple anti-bot test is correct
+ 		if ($human !== 5) {
+ 			$errHuman = 'Your anti-spam is incorrect';
+ 		}
+ // If there are no errors, send the email
+ if (!$errName && !$errEmail && !$errMessage && !$errHuman) {
+ 	if (mail ($to, $subject, $body, $from)) {
+ 		$result='<div class="alert alert-success">Thank You! I will be in touch</div>';
+ 	} else {
+ 		$result='<div class="alert alert-danger">Sorry there was an error sending your message. Please try again later.</div>';
+ 	}
+ }
+ 	}
+ ?>
 
-    <div class="messages"></div>
-
-    <div class="controls">
-
-        <div class="row">
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label for="form_name">Firstname *</label>
-                    <input id="form_name" type="text" name="name" class="form-control" placeholder="Please enter your firstname *" required="required" data-error="Firstname is required.">
-                    <div class="help-block with-errors"></div>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label for="form_lastname">Lastname *</label>
-                    <input id="form_lastname" type="text" name="surname" class="form-control" placeholder="Please enter your lastname *" required="required" data-error="Lastname is required.">
-                    <div class="help-block with-errors"></div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label for="form_email">Email *</label>
-                    <input id="form_email" type="email" name="email" class="form-control" placeholder="Please enter your email *" required="required" data-error="Valid email is required.">
-                    <div class="help-block with-errors"></div>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label for="form_phone">Phone</label>
-                    <input id="form_phone" type="tel" name="phone" class="form-control" placeholder="Please enter your phone">
-                    <div class="help-block with-errors"></div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                <div class="form-group">
-                    <label for="form_message">Message *</label>
-                    <textarea id="form_message" name="message" class="form-control" placeholder="Message for me *" rows="4" required="required" data-error="Please,leave us a message."></textarea>
-                    <div class="help-block with-errors"></div>
-                </div>
-            </div>
-            <div class="col-md-12">
-                <input type="submit" class="btn btn-success btn-send" value="Send message">
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                <p class="text-muted"><strong>*</strong> These fields are required.</p>
-            </div>
-        </div>
-    </div>
-
-  </form>
-</form>
-
-               </div>
-
-           </div>
-
-       </div>
-
-       <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
-       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-       <script src="validator.js"></script>
-       <script src="contact.js"></script>
+ <!DOCTYPE html>
+ <html lang="en">
+   <head>
+     <meta charset="utf-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+     <meta name="viewport" content="width=device-width, initial-scale=1">
+     <meta name="description" content="Bootstrap contact form with PHP example by BootstrapBay.com.">
+     <meta name="author" content="BootstrapBay.com">
+     <title>Bootstrap Contact Form With PHP Example</title>
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+   </head>
+   <body>
+   	<div class="container">
+   		<div class="row">
+   			<div class="col-md-6 col-md-offset-3">
+   				<h1 class="page-header text-center">Contact Form Example</h1>
+ 				<form class="form-horizontal" role="form" method="post" action="index.php">
+ 					<div class="form-group">
+ 						<label for="name" class="col-sm-2 control-label">Name</label>
+ 						<div class="col-sm-10">
+ 							<input type="text" class="form-control" id="name" name="name" placeholder="First & Last Name" value="<?php echo htmlspecialchars($_POST['name']); ?>">
+ 							<?php echo "<p class='text-danger'>$errName</p>";?>
+ 						</div>
+ 					</div>
+ 					<div class="form-group">
+ 						<label for="email" class="col-sm-2 control-label">Email</label>
+ 						<div class="col-sm-10">
+ 							<input type="email" class="form-control" id="email" name="email" placeholder="example@domain.com" value="<?php echo htmlspecialchars($_POST['email']); ?>">
+ 							<?php echo "<p class='text-danger'>$errEmail</p>";?>
+ 						</div>
+ 					</div>
+ 					<div class="form-group">
+ 						<label for="message" class="col-sm-2 control-label">Message</label>
+ 						<div class="col-sm-10">
+ 							<textarea class="form-control" rows="4" name="message"><?php echo htmlspecialchars($_POST['message']);?></textarea>
+ 							<?php echo "<p class='text-danger'>$errMessage</p>";?>
+ 						</div>
+ 					</div>
+ 					<div class="form-group">
+ 						<label for="human" class="col-sm-2 control-label">2 + 3 = ?</label>
+ 						<div class="col-sm-10">
+ 							<input type="text" class="form-control" id="human" name="human" placeholder="Your Answer">
+ 							<?php echo "<p class='text-danger'>$errHuman</p>";?>
+ 						</div>
+ 					</div>
+ 					<div class="form-group">
+ 						<div class="col-sm-10 col-sm-offset-2">
+ 							<input id="submit" name="submit" type="submit" value="Send" class="btn btn-primary">
+ 						</div>
+ 					</div>
+ 					<div class="form-group">
+ 						<div class="col-sm-10 col-sm-offset-2">
+ 							<?php echo $result; ?>
+ 						</div>
+ 					</div>
+ 				</form>
+ 			</div>
+ 		</div>
+ 	</div>
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>       
    </body>
 
 </html>
