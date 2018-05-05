@@ -144,7 +144,7 @@
           </div>
         </div>
       </div>
-           <button class="btn btn-primary" type="submit">Submit form</button>
+           <button class="btn btn-primary" type="submit" action="mailto:theodiamand38@gmail.com" onclick="mailto:theodiamand38@gmail.com">Submit form</button>
          </form>
 
          <script>
@@ -176,9 +176,10 @@
                var city = document.getElementById("validationCustom03").value;
                var state = document.getElementById("validationCustom04").value;
                var zip = document.getElementById("validationCustom05").value;
+
                    if (validation()) // Calling validation function
        {
-               var x = document.getElementsByName('feedback form');
+              var x = document.getElementsByName('feedback form');
                    x[0].submit(); //form submission
               alert(" Name : " + name + " n Email : " + email + " n Form Name : " + document.getElementById("textarea").getAttribute("name") + "nn Form Submitted Successfully......");
       }
