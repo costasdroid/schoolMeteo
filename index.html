@@ -13,13 +13,13 @@
      * element that contains the map. */
 
     .card-title {
-      font-size: 4vw;
       color: Yellow;
     }
 
     .card-header {
-      font-size: 1.7vw;
       font-weight: bold;
+
+        color: Magenta;
     }
 
     #map {
@@ -43,15 +43,6 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
 
-  <style>
-    /* Always set the map height explicitly to define the size of the div
-   * element that contains the map. */
-
-    #map {
-      height: 100%;
-    }
-  </style>
-
 </head>
 
 <body>
@@ -61,66 +52,108 @@
   </div>
   <div class="alert alert-warning alert-dismissible">
     <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-    <strong>Προσοχή!</strong> Ο Σταθμός ακόμα βρίσκεται σε πειραματικό στάδιο. Οι μετρήσεις δεν είναι οι πραγματικές.
+    <strong>Προσοχή!</strong> Ο Σταθμός ακόμα βρίσκεται σε πειραματικό στάδιο κλεισμένος σε μία αίθουσα. Οι μετρήσεις δεν είναι οι πραγματικές.
   </div>
-  <div class="card-group card-columns">
-    <div class="card text-white bg-dark">
-      <div class="card-header">Υγρασία</div>
-      <div class="card-body">
-        <p id="humidity" class="card-title text-center"></p>
+
+  <div class="row">
+    <div class="col-sm-3">
+      <div class="card text-white bg-dark">
+        <div class="card-header">
+          <h5>Υγρασία</h5>
+        </div>
+        <div class="card-body">
+          <h3 id="humidity" class="card-title text-center"></h3>
+        </div>
       </div>
     </div>
-    <div class="card text-white bg-dark">
-      <div class="card-header">Θερμοκρασία Αέρα</div>
-      <div class="card-body">
-        <p id="temperature" class="card-title text-center"></p>
+
+    <div class="col-sm-3">
+      <div class="card text-white bg-dark">
+        <div class="card-header">
+          <h5>Θερμοκρασία Αέρα</h5>
+        </div>
+        <div class="card-body">
+          <h3 id="temperature" class="card-title text-center"></h3>
+        </div>
       </div>
     </div>
-    <div class="card text-white bg-dark">
-      <div class="card-header">Θερμοκρασία Χώματος</div>
-      <div class="card-body">
-        <p id="gtemperature" class="card-title text-center"></p>
+
+    <div class="col-sm-3">
+      <div class="card text-white bg-dark">
+        <div class="card-header">
+          <h5>Θερμοκρασία Χώματος</h5>
+        </div>
+        <div class="card-body">
+          <h3 id="gtemperature" class="card-title text-center"></h3>
+        </div>
       </div>
     </div>
-    <div class="card text-white bg-dark">
-      <div class="card-header">Ποσότητα CO<sub>2</sub></div>
-      <div class="card-body">
-        <p id="co2" class="card-title text-center"></p>
+
+    <div class="col-sm-3">
+      <div class="card text-white bg-dark">
+        <div class="card-header">
+          <h5>Ποσότητα CO<sub>2</sub></h5>
+        </div>
+        <div class="card-body">
+          <h3 id="co2" class="card-title text-center"></h3>
+        </div>
       </div>
     </div>
   </div>
-  <div class="card-group card-columns">
-    <div class="card text-white bg-dark">
-      <div class="card-header">Ατμοσφαιρική Πίεση</div>
-      <div class="card-body">
-        <p id="apressure" class="card-title text-center"></p>
+
+  <div class="row">
+    <div class="col-sm-3">
+      <div class="card text-white bg-dark">
+        <div class="card-header">
+          <h5>Υγρασία</h5>
+        </div>
+        <div class="card-body">
+          <h3 id="apressure" class="card-title text-center"></h3>
+        </div>
       </div>
     </div>
-    <div class="card text-white bg-dark">
-      <div class="card-header">Αέρας</div>
-      <div class="card-body">
-        <p id="windd" class="card-title text-center"></p>
+
+    <div class="col-sm-3">
+      <div class="card text-white bg-dark">
+        <div class="card-header">
+          <h5>Αέρας</h5>
+        </div>
+        <div class="card-body">
+          <h3 id="windd" class="card-title text-center"></h3>
+        </div>
       </div>
     </div>
-    <div class="card text-white bg-dark">
-      <div class="card-header">Βροχή</div>
-      <div class="card-body">
-        <p id="rain" class="card-title text-center"></p>
+
+    <div class="col-sm-3">
+      <div class="card text-white bg-dark">
+        <div class="card-header">
+          <h5>Βροχή</h5>
+        </div>
+        <div class="card-body">
+          <h3 id="rain" class="card-title text-center"></h3>
+        </div>
       </div>
     </div>
-    <div class="card text-white bg-dark">
-      <div class="card-header">Ριπές</div>
-      <div class="card-body">
-        <p id="gust" class="card-title text-center"></p>
+
+    <div class="col-sm-3">
+      <div class="card text-white bg-dark">
+        <div class="card-header">
+          <h5>Ριπές</h5>
+        </div>
+        <div class="card-body">
+          <h3 id="gust" class="card-title text-center"></h3>
+        </div>
       </div>
     </div>
   </div>
 
   <p class="text-right">Τελευταία Eνημέρωση: <span id="data" class="label label-info"></span></p>
 
-  <p class="text-right">Διάλεξε Σταθμό:
-    <select id='stations' onchange="getLatest(value); getMeasurements(value);"></select>
-  </p>
+  <div class="form-group">
+    <label for="stations">Διάλεξε Σταθμό:</label>
+    <select class="form-control" id='stations' onchange="getLatest(value); getMeasurements(value);">
+   </select>
+  </div>
 
   <div><canvas id="myChartHumitidy" width="400px" height="400px"></canvas></div>
   <div><canvas id="myChartTemperature" width="400px" height="400px"></canvas></div>
@@ -479,7 +512,7 @@
   var getLatest = function(stationId) {
     $.getJSON("https://apex.oracle.com/pls/apex/raspberrypi/weatherstation/getlatestmeasurements/" + (stationId || mySchool), function(data) {
       var lastMeasures = data.items[0];
-      $('#data').text('Σταθμός ' + lastMeasures.created_by + ', ' + moment(lastMeasures.reading_timestamp.toString()).format("D MMM YYYY HH:mm"));
+      $('#data').text('Σταθμός ' + lastMeasures.created_by + ', ' + moment(lastMeasures.updated_on).format("D MMM YYYY HH:mm"));
       $('#humidity').text(lastMeasures.humidity + '%');
       $('#temperature').text(lastMeasures.ambient_temp + '\u{00B0}C');
       $('#gtemperature').text(lastMeasures.ground_temp + '\u{00B0}C');
@@ -505,7 +538,7 @@
       windGust.length = 0;
       rainfall.length = 0;
       $.each(data.items, function(key, val) {
-        var time = moment(val.reading_timestamp);
+        var time = val.reading_timestamp;
         humidity.push({
           x: time,
           y: val.humidity
@@ -557,7 +590,7 @@
   }
 
   $(document).ready(function() {
-//alert("Τα δεδομένα του σταθμού είναι πειραματικά, αφού εκρεμμεί η τοποθέτησή του σε σωστή θέση. Μέχρι εκείνη τη στιγμή... ζήτω οι αλλαγές")
+    //alert("Τα δεδομένα του σταθμού είναι πειραματικά, αφού εκρεμμεί η τοποθέτησή του σε σωστή θέση. Μέχρι εκείνη τη στιγμή... ζήτω οι αλλαγές")
     getLatest();
     getMeasurements();
   });
@@ -585,14 +618,15 @@
       $.each(data.items, function(key, val) {
         $('#stations').append($('<option>', {
           value: val.weather_stn_id,
-          text: val.weather_stn_name + ", " + val.weather_stn_id
+          text: val.weather_stn_id + ", " + val.weather_stn_name,
+          selected: val.weather_stn_id == 9254259
         }));
 
         stations.push(val);
         var marker = new google.maps.Marker({
           position: new google.maps.LatLng(val.weather_stn_lat, val.weather_stn_long),
           map: map,
-          title: val.weather_stn_name + ", " + val.weather_stn_id
+          title: val.weather_stn_id + ", " + val.weather_stn_name
         });
       })
       if (data.next) {
