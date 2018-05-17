@@ -7,6 +7,8 @@
   <!-- Bootstrap CSS, then Popper.js -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+  <!-- Add icon library -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 
   <style>
@@ -19,10 +21,105 @@
       margin: 0;
       padding: 0;
     }
+
+
+    .ba {
+    border-style: solid;
+    border-width: 1px;
+}
+
+.bb {
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+}
+
+.b--black-10 {
+    border-color: rgba(0, 0, 0, .1);
+}
+
+.br3 {
+    border-radius: .5rem;
+}
+
+.br-100 {
+    border-radius: 100%;
+}
+
+.bw1 {
+    border-width: .125rem;
+}
+
+.dib {
+    display: inline-block;
+}
+
+.h3 {
+    height: 4rem;
+}
+
+.lh-copy {
+    line-height: 1.5;
+}
+
+.mw3 {
+    max-width: 4rem;
+}
+
+.mw5 {
+    max-width: 16rem;
+}
+
+.w3 {
+    width: 4rem;
+}
+
+.black-70 {
+    color: rgba(0, 0, 0, .7);
+}
+
+.bg-white {
+    background-color: #fff;
+}
+
+.pa3 {
+    padding: 1rem;
+}
+
+.mv3 {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.tc {
+    text-align: center;
+}
+
+.f4 {
+    font-size: 1.25rem;
+}
+
+.f6 {
+    font-size: .875rem;
+}
+
+.measure {
+    max-width: 30em;
+}
+
+.center {
+    margin-right: auto;
+    margin-left: auto;
+}
+
+@media screen and (min-width: 30em) {
+    .pa4-ns {
+        padding: 2rem;
+    }
+}
+
+
+
   </style>
-
-  <!-- Popper.js, then Bootstrap JS -->
-
 
   <title>Γενικά</title>
 </head>
@@ -56,6 +153,43 @@
   </div>
 
   <h2 align="center"> Γενικές πληροφορίες για το project</h2>
-<p align="center"> Το project αυτό ξεκίνησε την σχολική χρονιά 2017-2018, με την βοήθεια των μαθητών και του καθηγητή μαθηματικών του σχολείου κ. Λόλα. Συγκεκριμένα, στο όλο εγχείρημα συμμετείχαν οι: Θεολόγος Διαμαντόπουλος, Παναγιώτης Παπαδημητρίου στο προγραμματιστικό κομμάτι και Αποστολίδης Βασίλειος στο κατασκευαστικό κομμάτι. Το project θα συνεχιστεί μέχρι να ολοκληρωθεί και ακόμα και τότε θα συνεχιστεί να εξελίσσεται. </p>
+  <p align="center"> Το project αυτό ξεκίνησε την σχολική χρονιά 2017-2018, με την βοήθεια των μαθητών και του καθηγητή μαθηματικών του σχολείου κ. Λόλα. Το project θα συνεχιστεί μέχρι να ολοκληρωθεί και ακόμα και τότε θα συνεχιστεί να εξελίσσεται. </p>
+
+  <h3 align="center">Συγκεκριμένα, τα άτομα που συμμετείχαν στο εγχείρημα αυτό είναι: </h3>
+
+<div class="card-deck">
+  <article class="mw5 center bg-white br3 pa3 pa4-ns mv3 ba b--black-10">
+  <div class="tc">
+    <img src="https://thumb.ibb.co/kjd6dy/logo_preview_dbb06f0b_e862_40ca_9814_5f3d6df3dedc.jpg" class="br-100 h3 w3 dib">
+    <h1 class="f4">Θεολόγος Διαμαντόπουλος</h1>
+    <hr class="mw3 bb bw1 b--black-10">
+  </div>
+  <p class="lh-copy measure center f6 black-70">
+  Είναι μαθητής της πρώτης λυκείου του 10ου ΓΕΛ Θεσσαλονίκης και βοήθησε στο προγραμματιστικό κομμάτι του project.
+  </p>
+</article>
+
+<article class="mw5 center bg-white br3 pa3 pa4-ns mv3 ba b--black-10">
+<div class="tc">
+  <img src="https://thumb.ibb.co/kjd6dy/logo_preview_dbb06f0b_e862_40ca_9814_5f3d6df3dedc.jpg" class="br-100 h3 w3 dib">
+  <h1 class="f4">Παναγιώτης Παπαδημητρίου</h1>
+  <hr class="mw3 bb bw1 b--black-10">
+</div>
+<p class="lh-copy measure center f6 black-70">
+Είναι μαθητής της πρώτης λυκείου του 10ου ΓΕΛ Θεσσαλονίκης και βοήθησε στο προγραμματιστικό κομμάτι του project.
+</p>
+</article>
+
+<article class="mw5 center bg-white br3 pa3 pa4-ns mv3 ba b--black-10">
+<div class="tc">
+  <img src="https://thumb.ibb.co/kjd6dy/logo_preview_dbb06f0b_e862_40ca_9814_5f3d6df3dedc.jpg" class="br-100 h3 w3 dib">
+  <h1 class="f4">Βασίλης Αποστολίδης</h1>
+  <hr class="mw3 bb bw1 b--black-10">
+</div>
+<p class="lh-copy measure center f6 black-70">
+Είναι μαθητής της πρώτης λυκείου του 10ου ΓΕΛ Θεσσαλονίκης και βοήθησε στο κατασκευαστικό κομμάτι του project.
+</p>
+</article>
+</div>
 </body>
 </html>
