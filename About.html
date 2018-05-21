@@ -7,6 +7,8 @@
   <!-- Bootstrap CSS, then Popper.js -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+  <!-- Add icon library -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 
   <style>
@@ -19,43 +21,96 @@
       margin: 0;
       padding: 0;
     }
+
+    /* Style all font awesome icons */
+ .fa {
+     padding: 20px;
+     font-size: 30px;
+     width: 50px;
+     text-align: center;
+     text-decoration: none;
+ }
+
+ /* Add a hover effect if you want */
+ .fa:hover {
+     opacity: 0.7;
+ }
+
+ /* Set a specific color for each brand */
+
+ /* Facebook */
+ .fa-facebook {
+     background: #3B5998;
+     color: white;
+ }
+
+ /* Twitter */
+ .fa-twitter {
+     background: #55ACEE;
+     color: white;
+ }
+
   </style>
-
-  <!-- Popper.js, then Bootstrap JS -->
-
 
   <title>Γενικά</title>
 </head>
 
 <body>
 
-  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <a class="navbar-brand" href="index.html">
-   <img src="https://thumb.ibb.co/kjd6dy/logo_preview_dbb06f0b_e862_40ca_9814_5f3d6df3dedc.jpg" width="30" height="30" class="d-inline-block align-top" alt="">
-   SchoolMeteo
+   <img src="schoolmeteo_logo.jpg" width="30" height="30" class="d-inline-block align-top" alt="">
+   Κεντρική Σελίδα
  </a>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
-          <a class="nav-link" href="Feedback.html">Feedback <span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="About.html">Γενικά</a>
+          <a class="nav-link" href="About.html">Γενικά <span class="sr-only">(current)</span></a>
         </li>
       </ul>
-      <form class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit" style="background-color: red" style="color: white">Search</button>
-      </form>
     </div>
   </nav>
 
-  <div class="jumbotron text-center">
-    <h1 align="center">Μετεωρολογικός Σταθμός 10ου ΓΕΛ Θεσσαλονίκης</h1>
-  </div>
-
   <h2 align="center"> Γενικές πληροφορίες για το project</h2>
-<p align="center"> Το project αυτό ξεκίνησε την σχολική χρονιά 2017-2018, με την βοήθεια των μαθητών και του καθηγητή μαθηματικών του σχολείου κ. Λόλα. Συγκεκριμένα, στο όλο εγχείρημα συμμετείχαν οι: Θεολόγος Διαμαντόπουλος, Παναγιώτης Παπαδημητρίου στο προγραμματιστικό κομμάτι και Αποστολίδης Βασίλειος στο κατασκευαστικό κομμάτι. Το project θα συνεχιστεί μέχρι να ολοκληρωθεί και ακόμα και τότε θα συνεχιστεί να εξελίσσεται. </p>
+  <p align="center"> Το project αυτό ξεκίνησε την σχολική χρονιά 2017-2018, με την βοήθεια των μαθητών και του καθηγητή μαθηματικών του σχολείου κ. Λόλα. Το project θα συνεχιστεί μέχρι να ολοκληρωθεί και ακόμα και τότε θα συνεχιστεί να εξελίσσεται. </p>
+
+  <h3 align="center">Η Ομάδα μας</h3>
+
+  <div class="card-deck">
+   <div class="card col-md-3">
+     <img class="card-img-top" src="images/theo diamand image.jpg" alt="Card image cap">
+     <div class="card-body">
+       <h5 class="card-title">Θεολόγος Διαμαντόπουλος</h5>
+       <p class="card-text">Μαθητής της Α' λυκείου του 10ου ΓΕΛ Θεσσαλονίκης. Συνέβαλε στο προγραμματιστικό κομμάτι του μετεορολογικού σταθμού.</p>
+     </div>
+     <div class="card-footer">
+       <small class="text-muted">
+         <a href="https://www.facebook.com/theo.diamand" class="fa fa-facebook"align="center"></a>
+         <a href="https://twitter.com/theo1098765432?lang=el" class="fa fa-twitter"align="center"></a>
+       </small>
+     </div>
+   </div>
+   <div class="card col-md-3">
+     <img class="card-img-top" src="images/panagiotis papadimitriou image.jpg" alt="Card image cap">
+     <div class="card-body">
+       <h5 class="card-title">Παναγιώτης Παπαδημητρίου</h5>
+       <p class="card-text">Μαθητής της Α' λυκείου του 10ου ΓΕΛ Θεσσαλονίκης. Συνέβαλε στο προγραμματιστικό κομμάτι του μετεορολογικού σταθμού.</p>
+     </div>
+     <div class="card-footer">
+       <small class="text-muted">
+         <a href="https://www.facebook.com/profile.php?id=100010071700810" class="fa fa-facebook" align="center"></a></small>
+     </div>
+   </div>
+   <div class="card col-md-3">
+     <img class="card-img-top" src="schoolmeteo_logo.jpg" alt="Card image cap">
+     <div class="card-body">
+       <h5 class="card-title">Βασίλης Αποστολίδης</h5>
+       <p class="card-text">Μαθητής της Α' λυκείου του 10ου ΓΕΛ Θεσσαλονίκης. Συνέβαλε στο κατασκευαστικό κομμάτι του μετεορολογικού σταθμού.</p>
+     </div>
+ </div>
+ </div>
+</div>
+
 </body>
 </html>
