@@ -12,6 +12,8 @@
     /* Always set the map height explicitly to define the size of the div
      * element that contains the map. */
 
+
+
     .card-title {
       color: Yellow;
     }
@@ -47,17 +49,49 @@
 
 <body>
 
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="#">School Meteo</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+  <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+  <ul class="navbar-nav mr-auto">
+    <li class="nav-item active">
+      <a class="nav-link" href="http://10gelthess.ddns.net">Αρχική σελίδα <span class="sr-only">(current)</span></a>
+    </li>
+    <li class="nav-item active">
+      <a class="nav-link" href="#">Σχετικά <span class="sr-only">(current)</span></a>
+    </li>
+  </ul>
+  <div class="form-group">
+    <div class="btn-group">
+  <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Διάλεξε Σταθμό
+  </button>
+  <div class="dropdown-menu"   id='stations'>
+
+  </div>
+</div>
+  </div>
+  </div>
+  </nav>
+
   <div class="jumbotron text-center">
     <h1>Μετεωρολογικός Σταθμός 10ου ΓΕΛ Θεσσαλονίκης</h1>
   </div>
+<div class="m-3">
   <div class="alert alert-warning alert-dismissible">
     <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
     <strong>Προσοχή!</strong> Ο Σταθμός ακόμα βρίσκεται σε πειραματικό στάδιο κλεισμένος σε μία αίθουσα. Οι μετρήσεις δεν είναι οι πραγματικές.
-  </div>
 
+  </div>
+</div>
+
+<div class="m-4">
   <div class="row">
     <div class="col-sm-3">
-      <div class="card text-white bg-dark">
+      <div class="card text-white bg-dark" style="max-width: 19rem;">
         <div class="card-header">
           <h5>Υγρασία</h5>
         </div>
@@ -68,7 +102,7 @@
     </div>
 
     <div class="col-sm-3">
-      <div class="card text-white bg-dark">
+      <div class="card text-white bg-dark" style="max-width: 19rem;">
         <div class="card-header">
           <h5>Θερμοκρασία Αέρα</h5>
         </div>
@@ -79,7 +113,7 @@
     </div>
 
     <div class="col-sm-3">
-      <div class="card text-white bg-dark">
+      <div class="card text-white bg-dark" style="max-width: 19rem;">
         <div class="card-header">
           <h5>Θερμοκρασία Χώματος</h5>
         </div>
@@ -90,7 +124,7 @@
     </div>
 
     <div class="col-sm-3">
-      <div class="card text-white bg-dark">
+      <div class="card text-white bg-dark" style="max-width: 19rem;">
         <div class="card-header">
           <h5>Ποσότητα CO<sub>2</sub></h5>
         </div>
@@ -100,7 +134,9 @@
       </div>
     </div>
   </div>
+</div>
 
+<div class="m-4">
   <div class="row">
     <div class="col-sm-3">
       <div class="card text-white bg-dark">
@@ -146,14 +182,9 @@
       </div>
     </div>
   </div>
+</div>
 
-  <p class="text-right">Τελευταία Eνημέρωση: <span id="data" class="label label-info"></span></p>
-
-  <div class="form-group">
-    <label for="stations">Διάλεξε Σταθμό:</label>
-    <select class="form-control" id='stations' onchange="getLatest(value); getMeasurements(value);">
-   </select>
-  </div>
+  <h5 class="text-center">Τελευταία Eνημέρωση:</h5>
 
   <div><canvas id="myChartHumitidy" width="400px" height="400px"></canvas></div>
   <div><canvas id="myChartTemperature" width="400px" height="400px"></canvas></div>
@@ -620,8 +651,7 @@
           value: val.weather_stn_id,
           text: val.weather_stn_id + ", " + val.weather_stn_name,
           selected: val.weather_stn_id == 9254259
-        }));
-
+        }).attr('href', 'google.com') );
         stations.push(val);
         var marker = new google.maps.Marker({
           position: new google.maps.LatLng(val.weather_stn_lat, val.weather_stn_long),
@@ -634,13 +664,11 @@
       };
     });
   };
-
   function initMap() {
     var myLatLng = {
       lat: 40.6100309,
       lng: 22.9892094
     };
-
     var map = new google.maps.Map(document.getElementById('map'), {
       zoom: 8,
       center: myLatLng
@@ -653,3 +681,4 @@
 
 
 </html>
+
